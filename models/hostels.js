@@ -11,10 +11,8 @@ const hostelSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  capacity: {
-    type: Number,
-    required: true,
-  },
+  pricePerDay: Number,
+  img: String,
   admin: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Admin',

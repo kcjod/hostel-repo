@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hostel XO - Profile</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100">
+
+    <nav class="bg-gray-800 w-full p-4 fixed top-0 z-50">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <div class="flex items-center">
+                <a href="/"><h1 class="text-white text-2xl font-bold">Hostel XO</h1></a>
+            </div>
+            <div class="flex space-x-4">
+                <a href="/about" class="text-gray-300 hover:text-white px-3 py-2">About</a>
+                
+                <% if (user) { %>
+                  <a href="/profile" class="text-gray-300 hover:text-white px-3 py-2">Profile</a>
+                  <a href="/rooms" class="text-gray-300 hover:text-white px-3 py-2">Rooms</a>
+                  <a href="/logout" class="bg-yellow-500 hover:bg-yellow-600 text-white px-4 py-2 rounded-full shadow-md">Logout</a>
+                <% } else { %>
+                  <a href="/m-reg" class="text-gray-300 hover:text-white px-3 py-2">Register</a>
+                  <a href="/m-log" class="bg-yellow-500 hover:bg-yellow-600 text-white px-4 py-2 rounded-full shadow-md">Login</a>
+                <% } %>
+            </div>
+        </div>
+      </nav>
+
+    <!-- Profile Section -->
+    <section class="container mx-auto px-4 mt-20">
+        <div class="bg-white rounded-lg shadow-lg p-6">
+            <h2 class="text-2xl font-bold mb-4">Profile</h2>
+            <div class="mb-4">
+                <h3 class="text-xl font-semibold">User Details</h3>
+                <p><strong>Name:</strong> <%= user.name %></p>
+                <p><strong>Username:</strong> <%= user.username %></p>
+                <p><strong>Phone:</strong> <%= user.phone %></p>
+            </div>
+
+            <div>
+                <h3 class="text-xl font-semibold mb-2">Your Bookings</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    <% user.bookedHostels.forEach((hostel) => { %>
+                    <div class="bg-gray-100 rounded-lg shadow p-4">
+                        <img src="<%= hostel.img %>" alt="Hostel Image" class="w-full h-32 object-cover rounded-md">
+                        <h4 class="text-lg font-bold mt-2"><%= hostel.name %></h4>
+                        <p><strong>Location:</strong> <%= hostel.location %></p>
+                        <p><strong>Price per Day:</strong> ₹<%= hostel.pricePerDay %></p>
+                    </div>
+                    <% }) %>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</body>
+</html>

@@ -1,6 +1,7 @@
 const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
+const bodyParser = require("body-parser");
 const logger = require('morgan');
 const expressSession = require('express-session');
 const flash = require("connect-flash");
@@ -20,6 +21,9 @@ app.use(expressSession({
   saveUninitialized: false,
   secret: "hostel"
 }));
+
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 
 app.use(logger('dev'));
 app.use(express.json());
